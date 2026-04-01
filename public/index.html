@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Notes App 🚀</title>
+<style>
+  body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 50px;
+    background: #f5f5f5;
+  }
+  h1 { text-align: center; color: #333; }
+  input {
+    padding: 10px;
+    width: 300px;
+    font-size: 16px;
+    margin-right: 5px;
+  }
+  button {
+    padding: 10px 15px;
+    font-size: 16px;
+    cursor: pointer;
+    margin: 5px;
+    border: none;
+    border-radius: 5px;
+    background-color: #007bff;
+    color: white;
+  }
+  ul {
+    list-style: none;
+    padding: 0;
+    margin-top: 20px;
+    width: 400px;
+  }
+  li {
+    background: white;
+    padding: 10px;
+    margin-bottom: 10px;
+    border-radius: 5px;
+    text-align: center;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+  }
+</style>
+</head>
+<body>
+
+<h1>Notes App 🚀</h1>
+
+<div>
+  <input id="noteInput" placeholder="Enter note">
+  <button onclick="addNote()">Add</button>
+</div>
+
+<ul id="notesList"></ul>
+
+<script>
+async function loadNotes() {
+  const res = await fetch('/notes');
+  const data = await res.json();
+  const ul = document.getElementById('notesList');
+  ul.innerHTML = '';
+  data.forEach(n => {
+    const li = document.createElement('li');
+    li.innerText = n;
+    ul.appendChild(li);
+  });
+}
+
+async function addNote() {
+  const input = document.getElementById('noteInput');
+  const note = input.value.trim();
+  if (!note) return;
+  await fetch('/notes', {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({ note })
+  });
+  input.value = '';
+  loadNotes();
+}
+
+// Initial load
+loadNotes();
+</script>
+
+</body>
+</html>
