@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 {
   "name": "notes-app",
   "version": "1.0.0",
@@ -14,3 +15,21 @@
   "license": "ISC",
   "type": "commonjs"
 }
+=======
+{
+  "name": "notes-app",
+  "version": "1.0.0",
+  "main": "app.js",
+  "dependencies": {
+    "express": "^4.22.1"
+  },
+  "description": "",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs"
+}
+>>>>>>> b8f97cd7c3bf69536b23d3efb9685e1eaf1de5ae

@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 apiVersion: apps/v1
 kind: Deployment
 metadata:
@@ -20,4 +21,28 @@ spec:
         image: notes-app
         imagePullPolicy: Never
         ports:
+=======
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: notes-app
+
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: notes-app
+
+  template:
+    metadata:
+      labels:
+        app: notes-app
+
+    spec:
+      containers:
+      - name: notes-container
+        image: notes-app
+        imagePullPolicy: Never
+        ports:
+>>>>>>> b8f97cd7c3bf69536b23d3efb9685e1eaf1de5ae
         - containerPort: 3000
